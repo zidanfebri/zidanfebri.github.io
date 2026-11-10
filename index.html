@@ -71,7 +71,7 @@
             </p>
             <div class="pembuka-aksi">
                 <a href="#proyek" class="tombol tombol-utama" data-i="hero_btn">View projects</a>
-                <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-garis">zidanfebrian982@gmail.com</a>
+                <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-garis buka-surel">zidanfebrian982@gmail.com</a>
             </div>
         </div>
         <aside class="pembuka-kartu">
@@ -314,7 +314,7 @@
         <h2 class="judul-bagian"><span>05</span><i data-i="ct_title">Contact</i></h2>
         <p class="kontak-ajakan" data-i="ct_text">Open to <b>Backend / Full Stack Developer</b> positions and information system development projects.</p>
         <div class="kontak-tautan">
-            <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-utama" data-i="ct_mail">Send email</a>
+            <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-utama buka-surel" data-i="ct_mail">Send email</a>
             <a href="https://github.com/zidanfebri" target="_blank" rel="noopener" class="tombol tombol-garis">GitHub</a>
         </div>
     </section>
@@ -326,6 +326,20 @@
         <a href="#atas" data-i="ft_top">Back to top ↑</a>
     </div>
 </footer>
+
+<dialog class="surel" id="surel" aria-labelledby="surelJudul">
+    <button type="button" class="lightbox-tutup" id="surelTutup" data-i-aria="a_close" aria-label="Close">×</button>
+    <h3 id="surelJudul" data-i="em_title">Send me an email</h3>
+    <p class="surel-ket" data-i="em_lead">Choose how you would like to write to me. Your message goes to:</p>
+    <p class="surel-alamat"><code>zidanfebrian982@gmail.com</code></p>
+    <div class="surel-pilihan">
+        <a id="surelGmail" class="tombol tombol-utama" target="_blank" rel="noopener" href="#" data-i="em_gmail">Open in Gmail</a>
+        <a id="surelOutlook" class="tombol tombol-garis" target="_blank" rel="noopener" href="#" data-i="em_outlook">Open in Outlook</a>
+        <a id="surelApp" class="tombol tombol-garis" href="#" data-i="em_app">Use my mail app</a>
+        <button type="button" id="surelSalin" class="tombol tombol-garis" data-i="em_copy">Copy address</button>
+    </div>
+    <p class="surel-catatan" data-i="em_note">Tip: if nothing opens, copy the address and paste it into your email app.</p>
+</dialog>
 
 <dialog class="lightbox" id="lightbox" data-i-aria="a_preview" aria-label="Image preview">
     <button type="button" class="lightbox-tutup" data-i-aria="a_close" aria-label="Close">×</button>

@@ -200,7 +200,9 @@ b, strong { font-weight: 700; }
     display: block; width: 100%; padding: 0; border: 1px solid var(--garis); border-radius: 0 0 10px 10px;
     overflow: hidden; background: var(--permukaan); cursor: zoom-in; box-shadow: var(--bayang);
 }
-.galeri-utama img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: opacity .2s; }
+.galeri-utama img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .22s ease-out, opacity .22s ease-out; backface-visibility: hidden; }
+.galeri-utama img.keluar { transform: perspective(900px) rotateY(-70deg) scale(.95); opacity: 0; transition-timing-function: ease-in; }
+.galeri-utama img.masuk { transform: perspective(900px) rotateY(70deg) scale(.95); opacity: 0; transition: none; }
 .galeri-utama.hp img { object-fit: contain; background: var(--latar); }
 .galeri figcaption { font-size: 15px; color: var(--teks-redup); margin: 12px 0; min-height: 2.8em; }
 .galeri-kecil { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
@@ -289,3 +291,61 @@ b, strong { font-weight: 700; }
     .pita > div { padding-left: 0 !important; border-left: 0 !important; }
     .pita > div + div { border-top: 1px solid var(--garis); }
 }
+
+/* ===================== Gambar proyek 3D ===================== */
+.panggung { position: relative; margin: 0 28px 34px 0; perspective: 1300px; animation: melayang 7s ease-in-out infinite; }
+.proyek:nth-of-type(2n) .panggung { animation-delay: -2.5s; }
+.proyek:nth-of-type(3n) .panggung { animation-delay: -4.5s; }
+.panggung:hover { animation-play-state: paused; }
+.kartu3d {
+    position: relative; transform-style: preserve-3d; border-radius: 10px;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+    will-change: transform;
+}
+.panggung.aktif3d .kartu3d { transition: transform .12s ease-out; }
+/* Lembar-lembar di belakang membuat tumpukan bertingkat; bergeser saat kartu dimiringkan. */
+.kartu3d::before, .kartu3d::after {
+    content: ""; position: absolute; inset: 0; z-index: -1; border: 1px solid var(--garis); border-radius: 10px; background: var(--permukaan);
+    box-shadow: 0 18px 40px rgba(20, 24, 33, .12);
+}
+.kartu3d::before { transform: translateZ(-26px) translate(12px, 14px); opacity: .85; }
+.kartu3d::after { transform: translateZ(-52px) translate(24px, 28px); opacity: .55; border-color: var(--oren); }
+[data-tema="gelap"] .kartu3d::before, [data-tema="gelap"] .kartu3d::after { box-shadow: 0 18px 40px rgba(0, 0, 0, .45); }
+.kartu3d .layar { transform: translateZ(18px); position: relative; z-index: 1; }
+.kartu3d .galeri-utama { transform: translateZ(8px); }
+.panggung.aktif3d .galeri-utama { box-shadow: 0 30px 60px rgba(20, 24, 33, .22); }
+[data-tema="gelap"] .panggung.aktif3d .galeri-utama { box-shadow: 0 30px 60px rgba(0, 0, 0, .55); }
+.kilau {
+    position: absolute; inset: 0; z-index: 3; border-radius: 10px; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, .34), rgba(255, 255, 255, 0) 55%);
+    mix-blend-mode: soft-light; transform: translateZ(30px);
+}
+.panggung.aktif3d .kilau { opacity: 1; }
+.proyek.terlihat .kartu3d { animation: masuk3d 1s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes melayang { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes masuk3d {
+    from { opacity: 0; transform: rotateY(-24deg) rotateX(8deg) translateX(40px) scale(.94); }
+    to   { opacity: 1; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+}
+@media (max-width: 960px) { .kartu3d::before { transform: translateZ(-20px) translate(8px, 10px); } .kartu3d::after { transform: translateZ(-40px) translate(16px, 20px); } }
+@media (prefers-reduced-motion: reduce) {
+    .panggung, .proyek.terlihat .kartu3d { animation: none; }
+    .kartu3d { transform: none !important; }
+    .kartu3d::before, .kartu3d::after { display: none; }
+    .kartu3d .layar, .kartu3d .galeri-utama, .kilau { transform: none; }
+}
+
+/* ===================== Dialog email ===================== */
+.surel {
+    width: min(460px, 92vw); padding: 28px 26px 24px; border: 1px solid var(--garis); border-radius: 12px;
+    background: var(--permukaan); color: var(--teks); box-shadow: var(--bayang);
+}
+.surel::backdrop { background: rgba(10, 12, 18, .6); }
+.surel h3 { font-size: 24px; margin-bottom: 8px; }
+.surel-ket { margin: 0 0 12px; color: var(--teks-redup); font-size: 17px; }
+.surel-alamat { margin: 0 0 20px; }
+.surel-alamat code { display: block; padding: 10px 12px; border-radius: 8px; background: var(--biru-muda); color: var(--biru); font-family: var(--huruf); font-weight: 700; font-size: 18px; overflow-wrap: anywhere; }
+.surel-pilihan { display: grid; gap: 10px; }
+.surel-pilihan .tombol { width: 100%; cursor: pointer; font-family: var(--huruf); }
+.surel-catatan { margin: 16px 0 0; font-size: 15px; color: var(--teks-redup); }

@@ -77,8 +77,14 @@
 
         ct_title: 'Kontak',
         ct_text: 'Terbuka untuk posisi <b>Backend / Full Stack Developer</b> dan proyek pengembangan sistem informasi.',
-        ct_mail: 'Kirim email', ft_top: 'Kembali ke atas ↑'
+        ct_mail: 'Kirim email', ft_top: 'Kembali ke atas ↑',
+        em_title: 'Kirim email kepada saya',
+        em_lead: 'Pilih cara yang paling nyaman untuk Anda. Pesan akan dikirim ke:',
+        em_gmail: 'Buka di Gmail', em_outlook: 'Buka di Outlook', em_app: 'Pakai aplikasi email saya', em_copy: 'Salin alamat',
+        em_note: 'Tips: jika tidak ada yang terbuka, salin alamatnya lalu tempel di aplikasi email Anda.',
+        em_copied: 'Tersalin!'
     };
+    var EN_EXTRA = { em_copied: 'Copied!' };
     var META = {
         id: {
             description: 'Portofolio Zidan Febrian Indra Putra, Full Stack Developer (Laravel) yang membangun sistem informasi sekolah: SIAKAD, platform ujian online, dan website SMA El Fitra.',
@@ -153,11 +159,47 @@
     // ================= Galeri tiap proyek =================
     function ketDari(btn) { return (bahasa === 'id' && btn.dataset.ketId) || btn.dataset.ket; }
 
+    var kurangiGerak = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     document.querySelectorAll('[data-galeri]').forEach(function (galeri) {
+        var layar = galeri.querySelector('.layar');
         var utama = galeri.querySelector('.galeri-utama');
         var gambar = utama.querySelector('img');
         var keterangan = galeri.querySelector('figcaption');
         var aktif = galeri.querySelector('.galeri-kecil button.aktif');
+
+        // Bungkus jendela gambar menjadi kartu 3D: miring mengikuti kursor, berlapis, dan melayang pelan.
+        var panggung = document.createElement('div');
+        panggung.className = 'panggung';
+        var kartu = document.createElement('div');
+        kartu.className = 'kartu3d';
+        var kilau = document.createElement('span');
+        kilau.className = 'kilau';
+        kilau.setAttribute('aria-hidden', 'true');
+        galeri.insertBefore(panggung, layar);
+        panggung.appendChild(kartu);
+        kartu.appendChild(layar);
+        kartu.appendChild(utama);
+        kartu.appendChild(kilau);
+
+        if (!kurangiGerak) {
+            panggung.addEventListener('pointermove', function (e) {
+                if (e.pointerType === 'touch') return;
+                var r = panggung.getBoundingClientRect();
+                var x = (e.clientX - r.left) / r.width - 0.5;
+                var y = (e.clientY - r.top) / r.height - 0.5;
+                panggung.classList.add('aktif3d');
+                kartu.style.setProperty('--ry', (x * 16).toFixed(2) + 'deg');
+                kartu.style.setProperty('--rx', (-y * 12).toFixed(2) + 'deg');
+                kartu.style.setProperty('--gx', ((x + 0.5) * 100).toFixed(1) + '%');
+                kartu.style.setProperty('--gy', ((y + 0.5) * 100).toFixed(1) + '%');
+            });
+            panggung.addEventListener('pointerleave', function () {
+                panggung.classList.remove('aktif3d');
+                kartu.style.setProperty('--ry', '0deg');
+                kartu.style.setProperty('--rx', '0deg');
+            });
+        }
 
         galeri.segarkanKet = function () {
             keterangan.textContent = ketDari(aktif);
@@ -165,16 +207,24 @@
         };
         galeri.querySelectorAll('.galeri-kecil button').forEach(function (btn) {
             btn.addEventListener('click', function () {
+                if (btn === aktif) return;
                 galeri.querySelectorAll('.galeri-kecil button').forEach(function (b) { b.classList.remove('aktif'); });
                 btn.classList.add('aktif');
                 aktif = btn;
-                gambar.style.opacity = 0;
+                // Gambar lama berputar keluar, gambar baru berputar masuk.
+                gambar.classList.add('keluar');
                 setTimeout(function () {
                     gambar.src = btn.dataset.src;
                     galeri.segarkanKet();
                     utama.classList.toggle('hp', btn.hasAttribute('data-hp'));
-                    gambar.style.opacity = 1;
-                }, 150);
+                    var tampil = function () {
+                        gambar.classList.remove('keluar');
+                        gambar.classList.add('masuk');
+                        void gambar.offsetWidth;
+                        gambar.classList.remove('masuk');
+                    };
+                    if (gambar.decode) gambar.decode().catch(function () {}).then(tampil); else tampil();
+                }, kurangiGerak ? 0 : 200);
             });
         });
         utama.addEventListener('click', function () { bukaLightbox(gambar.src, keterangan.textContent); });
@@ -191,6 +241,46 @@
     }
     lightbox.querySelector('.lightbox-tutup').addEventListener('click', function () { lightbox.close(); });
     lightbox.addEventListener('click', function (e) { if (e.target === lightbox) lightbox.close(); });
+
+    // ================= Dialog email =================
+    // mailto: hanya berjalan bila perangkat punya aplikasi email bawaan, jadi pengunjung diberi beberapa pilihan.
+    var ALAMAT = 'zidanfebrian982@gmail.com';
+    var surel = document.getElementById('surel');
+    function t(kunci) { return bahasa === 'id' ? ID[kunci] : EN_EXTRA[kunci]; }
+    function isiTautanSurel() {
+        var subjek = bahasa === 'id' ? 'Halo Zidan, saya melihat portofolio Anda' : 'Hello Zidan, I saw your portfolio';
+        var q = encodeURIComponent(subjek);
+        document.getElementById('surelGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + ALAMAT + '&su=' + q;
+        document.getElementById('surelOutlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + ALAMAT + '&subject=' + q;
+        document.getElementById('surelApp').href = 'mailto:' + ALAMAT + '?subject=' + q;
+    }
+    document.querySelectorAll('.buka-surel').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            if (typeof surel.showModal !== 'function') return; // browser lama: biarkan mailto: biasa
+            e.preventDefault();
+            isiTautanSurel();
+            surel.showModal();
+        });
+    });
+    document.getElementById('surelTutup').addEventListener('click', function () { surel.close(); });
+    surel.addEventListener('click', function (e) { if (e.target === surel) surel.close(); });
+    var tombolSalin = document.getElementById('surelSalin');
+    var teksSalinEn = tombolSalin.innerHTML;
+    tombolSalin.addEventListener('click', function () {
+        function berhasil() {
+            tombolSalin.textContent = t('em_copied');
+            setTimeout(function () { tombolSalin.innerHTML = bahasa === 'id' ? ID.em_copy : teksSalinEn; }, 1600);
+        }
+        function cadangan() {
+            var ta = document.createElement('textarea');
+            ta.value = ALAMAT; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+            surel.appendChild(ta); ta.select();
+            try { if (document.execCommand('copy')) berhasil(); } catch (err) {}
+            surel.removeChild(ta);
+        }
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(ALAMAT).then(berhasil, cadangan);
+        else cadangan();
+    });
 
     // ================= Animasi muncul & menu aktif =================
     var bagian = document.querySelectorAll('.bagian, .proyek, .pita');

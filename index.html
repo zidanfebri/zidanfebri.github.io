@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zidan Febrian Indra Putra — Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Zidan Febrian Indra Putra, a Laravel Full Stack Developer building school information systems: SIAKAD, an online exam platform, and school websites for SMA El Fitra.">
+    <meta property="og:title" content="Zidan Febrian Indra Putra — Full Stack Developer">
+    <meta property="og:description" content="SIAKAD, an online exam platform, and school websites used every day at SMA El Fitra.">
+    <meta property="og:image" content="assets/img/ujian-1.jpg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4ed8'/%3E%3Ctext x='16' y='22' font-family='Calibri,Arial' font-size='17' font-weight='700' fill='%23fff' text-anchor='middle'%3EZF%3C/text%3E%3Crect x='7' y='25' width='18' height='2' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carlito = Calibri-metric-compatible font, used on devices that do not have Calibri -->
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        // Apply the theme before first paint to avoid a flash.
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('tema'); } catch (e) {}
+            if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'gelap' : 'terang';
+            document.documentElement.setAttribute('data-tema', t);
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!--
+    Bilingual page. The English text lives here (default language);
+    the Indonesian text lives in assets/js/main.js, keyed by the data-i / data-i-aria attributes.
+-->
+
+<header class="kepala">
+    <div class="wadah kepala-isi">
+        <a href="#atas" class="merek">Zidan Febrian</a>
+        <nav class="menu" id="menu" data-i-aria="a_nav" aria-label="Main navigation">
+            <a href="#tentang" data-i="nav_about">About</a>
+            <a href="#pengalaman" data-i="nav_exp">Experience</a>
+            <a href="#proyek" data-i="nav_proj">Projects</a>
+            <a href="#keahlian" data-i="nav_skills">Skills</a>
+            <a href="#kontak" data-i="nav_contact">Contact</a>
+        </nav>
+        <div class="kepala-aksi">
+            <div class="bahasa" role="group" aria-label="Language / Bahasa">
+                <button type="button" data-bahasa="en" aria-pressed="true" title="English">EN</button>
+                <button type="button" data-bahasa="id" aria-pressed="false" title="Bahasa Indonesia">ID</button>
+            </div>
+            <button type="button" class="tombol-tema" id="tombolTema" data-i-aria="a_theme" data-i-title="a_theme" aria-label="Switch light / dark mode" title="Switch light / dark mode">
+                <svg class="ikon-bulan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+                <svg class="ikon-matahari" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+            </button>
+            <button type="button" class="tombol-menu" id="tombolMenu" data-i-aria="a_menu" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="atas">
+
+    <!-- ============ HERO ============ -->
+    <section class="pembuka wadah">
+        <div class="pembuka-teks">
+            <h1 class="sr-saja">Zidan Febrian Indra Putra</h1>
+            <p class="label">Full Stack Developer · Bandung</p>
+            <p class="pengantar" data-i="hero_intro">
+                Hi, I'm <strong>Zidan Febrian Indra Putra</strong>. Since August 2025 I have worked as a
+                Full Stack Developer at SMA El Fitra, designing, building, and maintaining websites for the
+                school's needs with Laravel and MySQL, from requirements analysis to running on a production server.
+            </p>
+            <div class="pembuka-aksi">
+                <a href="#proyek" class="tombol tombol-utama" data-i="hero_btn">View projects</a>
+                <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-garis">zidanfebrian982@gmail.com</a>
+            </div>
+        </div>
+        <aside class="pembuka-kartu">
+            <img src="assets/img/foto.jpg" alt="Photo of Zidan Febrian Indra Putra" data-i-alt="a_foto" class="foto" width="137" height="206">
+            <dl class="fakta">
+                <div><dt data-i="f_now">Currently</dt><dd>Full Stack Developer, SMA El Fitra</dd></div>
+                <div><dt data-i="f_edu">Education</dt><dd data-i="f_edu_v">Bachelor of Applied Science in Computer Engineering Technology, IPB University</dd></div>
+                <div><dt data-i="f_focus">Focus</dt><dd data-i="f_focus_v">Laravel, REST API, MySQL, school information systems</dd></div>
+            </dl>
+        </aside>
+    </section>
+
+    <section class="pita wadah" data-i-aria="a_summary" aria-label="Summary">
+        <div><b>3</b><span data-i="p1">applications running in production</span></div>
+        <div><b data-i="p2b">1+ year</b><span data-i="p2">building &amp; maintaining school systems</span></div>
+        <div><b>REST API</b><span data-i="p3">exam scores flow straight into report cards</span></div>
+        <div><b data-i="p4b">3.52</b><span data-i="p4">GPA, graduated <em>cum laude</em></span></div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="tentang" class="bagian wadah">
+        <h2 class="judul-bagian"><span>01</span><i data-i="ab_title">About me</i></h2>
+        <div class="dua-kolom">
+            <div class="teks">
+                <p data-i="ab_p1">
+                    I am a Full Stack Developer with a background in Computer Engineering Technology from the
+                    IPB University Vocational School. For more than a year I have worked directly with teachers,
+                    homeroom teachers, the finance office, and the principal to turn work that used to run on paper
+                    and Excel, such as attendance, grading, report cards, Qur'an memorization, leave requests, and
+                    exams, into connected web applications.
+                </p>
+                <p data-i="ab_p2">
+                    I am comfortable owning the whole development cycle: listening to what users need, designing the
+                    database, writing the backend and interface, testing, then deploying and fixing issues on the
+                    server while the system is in use. Earlier, I also gained experience in IoT and networking,
+                    including leading a software team on a hydroelectric power monitoring project during my studies.
+                </p>
+            </div>
+            <ul class="daftar-cara">
+                <li data-i="ab_c1"><b>Start from the user's problem.</b> Features are built after seeing how teachers and staff actually work.</li>
+                <li data-i="ab_c2"><b>Keep data consistent.</b> Exam scores, attendance, and report cards sync through APIs instead of being retyped.</li>
+                <li data-i="ab_c3"><b>Safe for exams.</b> Violations such as leaving the tab or logging in on another device are recorded automatically.</li>
+                <li data-i="ab_c4"><b>Easy to maintain.</b> New features are tested before release and can be rolled back when needed.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="pengalaman" class="bagian wadah">
+        <h2 class="judul-bagian"><span>02</span><i data-i="ex_title">Experience</i></h2>
+        <ol class="linimasa">
+            <li>
+                <div class="linimasa-waktu" data-i="ex1_date">Aug 2025 — present</div>
+                <div class="linimasa-isi">
+                    <h3 data-i="ex1_h">Full Stack Developer <span>· SMA El Fitra, Bandung</span></h3>
+                    <ul>
+                        <li data-i="ex1_a">Built <b>SIAKAD</b> for teachers, homeroom teachers, and admins: class schedules, attendance, teaching journals, grade entry, grade ledgers, and online report cards.</li>
+                        <li data-i="ex1_b">Built an <b>online exam platform</b> with Safe Exam Browser and an Android app, featuring violation detection, automatic grading, and score synchronization to SIAKAD report cards through a REST API.</li>
+                        <li data-i="ex1_c">Built a <b>Learning Management System</b> where teachers share modules and assignments and students track their learning progress.</li>
+                        <li data-i="ex1_d">Built a <b>staff management system</b> for teacher and staff leave requests, monitored by the operator and the principal.</li>
+                        <li data-i="ex1_e">Built <b>school websites</b> with online new-student registration.</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="linimasa-waktu" data-i="ex2_date">Aug 2023 — Dec 2023</div>
+                <div class="linimasa-isi">
+                    <h3 data-i="ex2_h">Software Engineering Division Lead <span>· Project Based Learning, IPB University Vocational School</span></h3>
+                    <ul>
+                        <li data-i="ex2_a">Led a team of 4 software engineers building a web-based application.</li>
+                        <li data-i="ex2_b">Built a power (watt) monitoring website that charts the output of a hydroelectric plant prototype, using PHP, Laravel, and MySQL.</li>
+                    </ul>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="proyek" class="bagian wadah">
+        <h2 class="judul-bagian"><span>03</span><i data-i="pr_title">Projects at SMA El Fitra</i></h2>
+        <p class="sub-bagian" data-i="pr_sub">Three connected applications.</p>
+
+        <!-- Project 1 -->
+        <article class="proyek">
+            <div class="proyek-teks">
+                <p class="label" data-i="p1_label">Academic Information System</p>
+                <h3>SIAKAD SMA El Fitra</h3>
+                <p data-i="p1_desc">
+                    The school's academic data hub. Teachers record attendance, journals, and grades online, and
+                    homeroom teachers get grade ledgers and report cards without manual compiling. The other
+                    applications (the exam portal and the LMS) pull student, class, and schedule data from here
+                    through a REST API.
+                </p>
+                <ul class="fitur">
+                    <li data-i="p1_f1">Roles for admin, teacher, homeroom teacher, finance, counselor, and principal</li>
+                    <li data-i="p1_f2">Class schedules, class and subject attendance, teaching journals</li>
+                    <li data-i="p1_f3">Daily/midterm/final grade entry, grade ledgers, rankings, and PDF report cards</li>
+                    <li data-i="p1_f4">Qur'an memorization (ziyadah) with monthly reports and digital signatures</li>
+                    <li data-i="p1_f5">Student biodata, family card &amp; birth certificate uploads, and parent portal accounts</li>
+                    <li data-i="p1_f6">Teacher and staff sick/out-of-office requests, plus tuition (SPP) management</li>
+                </ul>
+                <ul class="teknologi"><li>Laravel</li><li>MySQL</li><li>Bootstrap 5</li><li>JavaScript</li><li>REST API</li><li>DomPDF</li></ul>
+                <a class="tautan" href="https://siakad.elfitra.sch.id" target="_blank" rel="noopener">siakad.elfitra.sch.id ↗</a>
+            </div>
+            <figure class="galeri" data-galeri>
+                <div class="layar"><span></span><span></span><span></span></div>
+                <button type="button" class="galeri-utama" data-i-aria="a_zoom" aria-label="Enlarge image">
+                    <img src="assets/img/siakad-1.jpg" alt="" loading="lazy">
+                </button>
+                <figcaption></figcaption>
+                <div class="galeri-kecil">
+                    <button type="button" class="aktif" data-src="assets/img/siakad-1.jpg" data-ket="Admin dashboard: summary of students, teachers, classes, and today's teaching sessions." data-ket-id="Dashboard admin: ringkasan siswa, guru, kelas, dan sesi mengajar hari ini."><img src="assets/img/siakad-1.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/siakad-3.jpg" data-ket="Teacher panel: grade-entry progress per class and the schedule list that still needs grading." data-ket-id="Panel guru: progres input nilai per kelas dan daftar jadwal yang harus dinilai."><img src="assets/img/siakad-3.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/siakad-2.jpg" data-ket="Student data with cohort and age filters, plus the status of family card and birth certificate documents." data-ket-id="Data siswa dengan filter angkatan dan umur, serta status dokumen KK/akta."><img src="assets/img/siakad-2.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/siakad-4.jpg" data-ket="The finance office views complete student biodata along with its documents." data-ket-id="Bagian keuangan melihat biodata lengkap siswa beserta dokumennya."><img src="assets/img/siakad-4.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/siakad-5.jpg" data-ket="Login page." data-ket-id="Halaman login."><img src="assets/img/siakad-5.jpg" alt="" loading="lazy"></button>
+                </div>
+            </figure>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="proyek proyek-balik">
+            <div class="proyek-teks">
+                <p class="label" data-i="p2_label">Online Exams &amp; LMS</p>
+                <h3 data-i="p2_h">Exam &amp; Learning Portal</h3>
+                <p data-i="p2_desc">
+                    Used for daily quizzes, midterms, final exams, and tryouts. Students take exams through Safe
+                    Exam Browser or the school's Android app, proctors monitor each room live, and graded scores
+                    are sent automatically to report cards in SIAKAD.
+                </p>
+                <ul class="fitur">
+                    <li data-i="p2_f1">Question bank with multiple choice, essay, and table questions; Excel import; math formula editor</li>
+                    <li data-i="p2_f2">Detection of leaving the tab, logging in on another device, and pasted text, with durations</li>
+                    <li data-i="p2_f3">Mixed exam rooms across classes, seat numbers, and per-session proctors assigned by the committee</li>
+                    <li data-i="p2_f4">Live room monitor: open/close access, reset time, make-up exams</li>
+                    <li data-i="p2_f5">Online learning modules and assignments, notifications, and a parent portal</li>
+                    <li data-i="p2_f6">Touch-screen student council (OSIS) election voting secured with a PIN</li>
+                </ul>
+                <ul class="teknologi"><li>Laravel</li><li>MySQL</li><li>Safe Exam Browser</li><li>Android app</li><li>REST API</li><li>PWA</li></ul>
+                <a class="tautan" href="https://lms.elfitra.sch.id" target="_blank" rel="noopener">lms.elfitra.sch.id ↗</a>
+            </div>
+            <figure class="galeri" data-galeri>
+                <div class="layar"><span></span><span></span><span></span></div>
+                <button type="button" class="galeri-utama" data-i-aria="a_zoom" aria-label="Enlarge image">
+                    <img src="assets/img/ujian-1.jpg" alt="" loading="lazy">
+                </button>
+                <figcaption></figcaption>
+                <div class="galeri-kecil">
+                    <button type="button" class="aktif" data-src="assets/img/ujian-1.jpg" data-ket="Room monitor: each student's progress and violations update automatically." data-ket-id="Monitor ruang: status pengerjaan dan pelanggaran tiap siswa diperbarui otomatis."><img src="assets/img/ujian-1.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/ujian-2.jpg" data-ket="Student exam sheet with a timer, question navigation, and a student ID watermark." data-ket-id="Lembar ujian siswa dengan timer, navigasi nomor soal, dan watermark NIS."><img src="assets/img/ujian-2.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/ujian-3.jpg" data-ket="The committee splits students into mixed rooms and assigns proctors per session." data-ket-id="Panitia membagi siswa ke ruang campuran dan menetapkan pengawas per sesi."><img src="assets/img/ujian-3.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/ujian-4.jpg" data-ket="Teacher question bank, showing which exams use each question." data-ket-id="Bank soal guru, lengkap dengan informasi ujian yang memakai tiap soal."><img src="assets/img/ujian-4.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/ujian-6.jpg" data-ket="Student dashboard: exam room and seat number, and the exams active today." data-ket-id="Dashboard siswa: ruang dan nomor kursi ujian, serta ujian yang aktif hari ini."><img src="assets/img/ujian-6.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/ujian-5.jpg" data-ket="Student council election voting screen for touch-screen devices." data-ket-id="Layar voting ketua OSIS untuk perangkat layar sentuh."><img src="assets/img/ujian-5.jpg" alt="" loading="lazy"></button>
+                </div>
+            </figure>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="proyek">
+            <div class="proyek-teks">
+                <p class="label" data-i="p3_label">School Website</p>
+                <h3 data-i="p3_h">El Fitra Foundation Website</h3>
+                <p data-i="p3_desc">
+                    School profile website for prospective students and parents. A single Laravel application
+                    serves several school levels (kindergarten, elementary, junior high, and senior high) through
+                    subdomains, with an admin panel for news and applicant data.
+                </p>
+                <ul class="fitur">
+                    <li data-i="p3_f1">A page per school level through subdomains, from one codebase</li>
+                    <li data-i="p3_f2">Two languages: Indonesian and English</li>
+                    <li data-i="p3_f3">Multi-step new-student registration with payment proof upload</li>
+                    <li data-i="p3_f4">Admin panel: news, testimonials, applicant verification, and visit statistics</li>
+                    <li data-i="p3_f5">Responsive layout for mobile</li>
+                </ul>
+                <ul class="teknologi"><li>Laravel</li><li>MySQL</li><li>Bootstrap</li><li>JavaScript</li></ul>
+                <a class="tautan" href="https://sisfo.elfitra.sch.id" target="_blank" rel="noopener">sisfo.elfitra.sch.id ↗</a>
+            </div>
+            <figure class="galeri" data-galeri>
+                <div class="layar"><span></span><span></span><span></span></div>
+                <button type="button" class="galeri-utama" data-i-aria="a_zoom" aria-label="Enlarge image">
+                    <img src="assets/img/web-1.jpg" alt="" loading="lazy">
+                </button>
+                <figcaption></figcaption>
+                <div class="galeri-kecil">
+                    <button type="button" class="aktif" data-src="assets/img/web-1.jpg" data-ket="Homepage of the SMA El Fitra website." data-ket-id="Beranda website SMA El Fitra."><img src="assets/img/web-1.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/web-3.jpg" data-ket="School profile and location section." data-ket-id="Bagian profil dan lokasi sekolah."><img src="assets/img/web-3.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/web-2.jpg" data-ket="Vision, mission, and graduate profile." data-ket-id="Visi, misi, dan profil lulusan."><img src="assets/img/web-2.jpg" alt="" loading="lazy"></button>
+                    <button type="button" data-src="assets/img/web-hp.jpg" data-ket="Mobile view." data-ket-id="Tampilan di HP." data-hp><img src="assets/img/web-hp.jpg" alt="" loading="lazy"></button>
+                </div>
+            </figure>
+        </article>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="keahlian" class="bagian wadah">
+        <h2 class="judul-bagian"><span>04</span><i data-i="sk_title">Skills</i></h2>
+        <div class="kisi-keahlian">
+            <div>
+                <h3>Backend</h3>
+                <p>PHP, Laravel, REST API, MySQL, Python, Django</p>
+            </div>
+            <div>
+                <h3>Frontend</h3>
+                <p data-i="sk_fe">HTML, CSS, JavaScript, Bootstrap, jQuery, responsive design</p>
+            </div>
+            <div>
+                <h3 data-i="sk_tools_h">Tools &amp; other</h3>
+                <p data-i="sk_tools">Git &amp; GitHub, hosting deployment, Safe Exam Browser, IoT, computer networking</p>
+            </div>
+            <div>
+                <h3 data-i="sk_work_h">Working style</h3>
+                <p data-i="sk_work">Communicative, disciplined, adaptable, solution-oriented, and comfortable managing my own time</p>
+            </div>
+            <div>
+                <h3 data-i="sk_lang_h">Languages</h3>
+                <p data-i="sk_lang">Indonesian (Native), English (Intermediate)</p>
+            </div>
+            <div>
+                <h3>Office</h3>
+                <p data-i="sk_office">Microsoft Word, Excel, and PowerPoint</p>
+            </div>
+        </div>
+
+        <h3 class="judul-kecil" data-i="ed_title">Education</h3>
+        <ul class="pendidikan">
+            <li>
+                <span class="tahun">2021 — 2025</span>
+                <div data-i="ed1"><b>IPB University Vocational School</b>, Bogor<br>Bachelor of Applied Science in Computer Engineering Technology · GPA 3.52/4.00</div>
+            </li>
+            <li>
+                <span class="tahun">2018 — 2021</span>
+                <div data-i="ed2"><b>Balai Perguruan Putri Vocational High School (SMK)</b>, Bandung<br>Software Engineering</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="kontak" class="bagian wadah kontak">
+        <h2 class="judul-bagian"><span>05</span><i data-i="ct_title">Contact</i></h2>
+        <p class="kontak-ajakan" data-i="ct_text">Open to <b>Backend / Full Stack Developer</b> positions and information system development projects.</p>
+        <div class="kontak-tautan">
+            <a href="mailto:zidanfebrian982@gmail.com" class="tombol tombol-utama" data-i="ct_mail">Send email</a>
+            <a href="https://github.com/zidanfebri" target="_blank" rel="noopener" class="tombol tombol-garis">GitHub</a>
+        </div>
+    </section>
+</main>
+
+<footer class="kaki">
+    <div class="wadah">
+        <span>© <span id="tahun">2026</span> Zidan Febrian Indra Putra</span>
+        <a href="#atas" data-i="ft_top">Back to top ↑</a>
+    </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" data-i-aria="a_preview" aria-label="Image preview">
+    <button type="button" class="lightbox-tutup" data-i-aria="a_close" aria-label="Close">×</button>
+    <img src="" alt="">
+    <p></p>
+</dialog>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

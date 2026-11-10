@@ -13,6 +13,11 @@ assets/img/            foto & tangkapan layar proyek (data contoh)
 - Tombol **EN | ID** di pojok kanan atas. Bawaannya Inggris; pilihan pengunjung diingat di browsernya.
 - Tautan langsung: `index.html?lang=id` atau `index.html?lang=en`.
 
+## Menjelajah gambar proyek
+- Keyboard: tombol **←** dan **→** memindahkan gambar pada proyek yang sedang terlihat di layar (atau yang kursornya sedang di atasnya). Di lightbox, panah yang sama berlaku; **Esc** menutup.
+- Mouse: tombol panah di sisi gambar, thumbnail, atau klik gambar untuk memperbesar.
+- HP: geser gambar ke kiri/kanan; baris thumbnail juga bisa digeser.
+
 ## Mengubah isi
 - Teks **Inggris**: edit langsung di `index.html` (elemen yang punya atribut `data-i="kunci"`).
 - Teks **Indonesia**: edit di `assets/js/main.js`, bagian `var ID = { ... }`, pada kunci yang sama.

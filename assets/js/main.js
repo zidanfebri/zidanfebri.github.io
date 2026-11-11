@@ -123,6 +123,9 @@
         metaDesc.content = m.description;
         metaOg.content = m.ogDescription;
         tombolBahasa.forEach(function (t) { t.setAttribute('aria-pressed', t.dataset.bahasa === bahasa ? 'true' : 'false'); });
+        // Pesan awal WhatsApp mengikuti bahasa yang dipilih.
+        var pesanWa = bahasa === 'id' ? 'Halo Zidan, saya melihat portofolio Anda.' : 'Hello Zidan, I saw your portfolio.';
+        document.querySelectorAll('.buka-wa').forEach(function (a) { a.href = 'https://wa.me/6285793526478?text=' + encodeURIComponent(pesanWa); });
         document.querySelectorAll('[data-galeri]').forEach(function (g) { g.segarkanKet(); });
         if (simpan) { try { localStorage.setItem('bahasa', bahasa); } catch (e) {} }
     }
